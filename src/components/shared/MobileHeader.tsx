@@ -9,15 +9,21 @@ import { APP_HEADER_NAV_ROUTES } from '@/utils/constants/routes';
 import CustomLink from '../common/CustomLink';
 import CustomButton from '../common/CustomButton';
 import hamburger from "@/assets/hamburger.svg";
+import { HeaderProps } from '@/models/shared';
+import clsx from 'clsx';
 
 
-const MobileHeader = () => {
+const MobileHeader = ({isScrolled}:HeaderProps) => {
     const [nav, setNav] = useState<boolean>(false);
     const handleClick = () => setNav(!nav);
   return (
     <nav className='lg:hidden'>
         <ul>
-            <div className={`transition-all duration-150 w-full flex justify-between items-center h-[64px] px-4 border-b border-transparent ${nav ? " !border-border-light" : ""}`}>
+            <div className={clsx(
+                'transition-all duration-150 border-b w-full flex justify-between items-center h-[64px] px-4 bg-surface-bgInvert',
+                isScrolled || nav ? "fixed border-b-border-light top-0 left-0 z-50 ease-in-out" : "border-transparent"
+            )}
+            >
                 <li>
                     <Link href={'/'} className='flex items-end'>
                     <Image src={BrinteLogo} alt="Brinte logo" />
@@ -29,10 +35,10 @@ const MobileHeader = () => {
                 </div>
             </div>
             <div
-                className={`transition-all duration-100 brite_wrapper py-5 px-4
+                className={`transition-all duration-100 py-5 px-4 fixed w-full inset-0 top-[63px]
                 ${!nav
-                    ? "translate-x-full opacity-0 w-0"
-                    : "absolute top-[65px] lg:hidden left-0 w-full bg-white min-h-screen opacity-1 -translate-x-0"}
+                    ? "translate-x-[100%]"
+                    : "lg:hidden border-t border-t-border-light bg-white min-h-screen -translate-x-0"}
                 `}
             >
                 <div className='flex flex-col gap-4'>
