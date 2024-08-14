@@ -2,6 +2,9 @@ export interface BadgeProps {
     title: string;
     classNames?: string;
 }
+export interface HeaderProps {
+    isScrolled: boolean;
+}
 
 export interface CustomLinkProps {
     href: string;
@@ -15,4 +18,10 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
     variant: 'primary' | 'secondary' | 'tertiary'; // Button type
     className?: string;
     loading?: boolean;
+}
+
+export interface CardProps {
+    title: string;
+    children: React.ReactNode;
+    className: string;
 }

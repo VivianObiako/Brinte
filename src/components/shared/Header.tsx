@@ -33,10 +33,10 @@ const Header = () => {
 
     
   return (
-    <header className='w-full border-b border-transparent'>
+    <header className='w-full'>
         <nav className={clsx(
-            'hidden lg:flex border-b border-b-transparent w-full bg-surface-bgInvert',
-            isScrolled ? 'border-b-border-light fixed top-0 left-0 z-50 transition-all duration-300' : 'border-b-transparent'
+            'hidden lg:flex border-b w-full bg-surface-bgInvert transition-all duration-300 ease',
+            isScrolled ? 'border-b-border-light fixed top-0 left-0 z-50' : 'border-b-transparent'
             )}
         >
             <ul className='w-full flex justify-between h-[64px] px-16 items-center'>
@@ -63,7 +63,7 @@ const Header = () => {
                 </div>
             </ul>
         </nav>
-        <MobileHeader />
+        <MobileHeader isScrolled={isScrolled} />
     </header>
     )
 }
