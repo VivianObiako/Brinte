@@ -2,28 +2,39 @@
 @tailwind components;
 @tailwind utilities;
 
+
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+  --foreground-rgb: #ffffff;
+  --color-rgb: #202022;
+  --site-width: 650px;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
+body{
+  background: rgb(var(--foreground-rgb));
+  color: rgb(var(--color-rgb));
+  font-family: "PP Telegraf", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@layer components {
+  .brite_wrapper {
+    @apply container mx-auto px-4 max-w-[var(--site-width)];
   }
 }
 
-body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+/* the class hide-scroll is used to hide the scrollbar  */
+html::-webkit-scrollbar,
+.hide-scroll::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+html,
+.hide-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
 }
 
 @layer utilities {
