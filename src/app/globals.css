@@ -1,7 +1,7 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-@import "@/fonts/font.css";
+@import "@/utils/fonts/font.css";
 
 
 :root {
@@ -18,9 +18,24 @@ body{
   font-style: normal;
 }
 
+img{
+  height: 100%;
+  width: 100%;
+  display: block;
+}
+
 @layer components {
   .brite_wrapper {
     @apply container mx-auto px-4 max-w-[var(--site-width)];
+  }
+
+  /* links */
+  .link{
+    @apply text-[13px] leading-[20px] text-text-label font-medium hover:text-text-subdued;
+  }
+
+  .link.inert{
+    @apply text-text-subdued
   }
 }
 
@@ -39,7 +54,7 @@ html,
 }
 
 @layer utilities {
-  .text-balance {
+  .site-link {
     text-wrap: balance;
   }
 }
