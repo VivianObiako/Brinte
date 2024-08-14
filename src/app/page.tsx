@@ -1,3 +1,4 @@
+import Footer from "@/components/shared/Footer";
 import Header from "@/components/shared/Header";
 
 export default function Home() {
@@ -14,9 +15,7 @@ export default function Home() {
           <h1>Section 1</h1>
         </div>
       </section>
-      <footer>
-        <h3>Footer</h3>
-      </footer>
+      <Footer />
     </main>
   );
 }

@@ -1,7 +1,8 @@
 
 export interface AppLinkProps {
     name: string;
-    route: string
+    route: string;
+    icon?: any;
 }
 
 export const APP_RESOURCES_ROUTES:AppLinkProps[] = [
