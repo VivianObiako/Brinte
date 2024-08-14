@@ -1,10 +1,11 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import "@/fonts/font.css";
 
 
 :root {
-  --foreground-rgb: #ffffff;
+  --foreground-rgb: #FEFEFF;
   --color-rgb: #202022;
   --site-width: 650px;
 }
