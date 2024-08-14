@@ -33,3 +33,6 @@ export interface SectionHeaderProps {
     description: string;
     className?: string;
 }
+export interface ContactFormProps {
+    closeForm: ()=> void;
+}
