@@ -1,15 +1,31 @@
 import React from 'react'
+import Card from './common/Card'
+import { CARDS } from '@/utils/constants/variables'
+import SectionHeader from './shared/SectionHeader'
 
 const ResourcesSection = () => {
   return (
     <section className='w-full bg-surface-active py-16 md:py-[128px]'>
         <div className="brite_wrapper">
-            <div className='max-w-[395px] mb-10 md:mb-[80px]'>
-                <h2 className='font-medium text-5xl md:text-[56px] md:leading-[64px] tracking-[-1px] mb-3'>Helpful <br/> resources</h2>
-                <p className='text-base'>Find helpful tools, tips, and materials from our community, help center, and docs.</p>
-            </div>
-            <div>
-                
+            <SectionHeader 
+                title='Helpful resources'
+                description='Find helpful tools, tips, and materials from our community, help center, and docs.'
+            />
+            <div className='flex flex-col md:flex-row gap-4 items-center'>
+                <Card
+                    {...CARDS[0]}
+                    className='bg-purple-400 hover:bg-purple-500'
+                />
+                <div className='flex flex-col gap-4'>
+                    <Card
+                        {...CARDS[1]}
+                        className='bg-orange-400 hover:bg-orange-500'
+                    />
+                    <Card
+                        {...CARDS[2]}
+                        className='bg-surface-bgInvert hover:bg-tertiary-dim'
+                    />
+                </div>
             </div>
         </div>
     </section>

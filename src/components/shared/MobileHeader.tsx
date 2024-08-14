@@ -21,7 +21,7 @@ const MobileHeader = ({isScrolled}:HeaderProps) => {
         <ul>
             <div className={clsx(
                 'transition-all duration-150 border-b w-full flex justify-between items-center h-[64px] px-4 bg-surface-bgInvert',
-                isScrolled || nav ? "fixed border-b-border-light top-0 left-0 z-50" : "border-transparent"
+                isScrolled || nav ? "fixed border-b-border-light top-0 left-0 z-50 ease-in-out" : "border-transparent"
             )}
             >
                 <li>
@@ -35,10 +35,10 @@ const MobileHeader = ({isScrolled}:HeaderProps) => {
                 </div>
             </div>
             <div
-                className={`transition-all duration-100 brite_wrapper py-5 px-4
+                className={`transition-all duration-100 py-5 px-4 fixed w-full inset-0 top-[63px]
                 ${!nav
-                    ? "translate-x-full opacity-0 w-0"
-                    : "fixed inset-0 top-[63px] lg:hidden border-t border-t-border-light  w-full bg-white min-h-screen opacity-1 -translate-x-0"}
+                    ? "translate-x-[100%]"
+                    : "lg:hidden border-t border-t-border-light bg-white min-h-screen -translate-x-0"}
                 `}
             >
                 <div className='flex flex-col gap-4'>

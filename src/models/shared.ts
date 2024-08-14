@@ -22,6 +22,14 @@ export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElemen
 
 export interface CardProps {
     title: string;
-    children: React.ReactNode;
-    className: string;
+    guideText: string;
+    className?: string;
+    type: "small" | "big";
+    link: string;
+    icon: any;
+}
+export interface SectionHeaderProps {
+    title: string;
+    description: string;
+    className?: string;
 }
