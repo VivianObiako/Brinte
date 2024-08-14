@@ -7,6 +7,7 @@ export interface CustomLinkProps {
     href: string;
     inert?: boolean;
     children: React.ReactNode;
+    className?: string;
 }
 
 export interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {

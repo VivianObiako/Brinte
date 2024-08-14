@@ -31,7 +31,7 @@ img{
 
   /* links */
   .link{
-    @apply text-[13px] leading-[20px] text-text-label font-medium hover:text-text-subdued
+    @apply text-[13px] leading-[20px] text-text-label font-medium hover:text-text-subdued;
   }
 
   .link.inert{

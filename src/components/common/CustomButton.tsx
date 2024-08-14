@@ -7,7 +7,7 @@ import Image from 'next/image';
 const CustomButton: React.FC<ButtonProps> = ({ children, variant, className, disabled, loading, ...props }) => {
     const isDisabled = disabled || loading;
 
-    const baseStyles = 'transition ease-in-out duration-200 px-3 py-2 rounded font-medium text-[13px] leading-[20px] text-text-neutral flex items-center gap-2 outline-0';
+    const baseStyles = 'transition ease-in-out duration-200 px-3 py-2 rounded font-medium text-[13px] leading-[20px] flex items-center justify-center gap-2 outline-0 min-w-[65px]';
 
     const variantStyles = clsx({
         'bg-primary-100 text-text-cta hover:bg-primary-hover hover:shadow-primaryBtn-hover active:shadow-primaryBtn-active active:bg-primary-100 focus:bg-primary-100 focus:shadow-primaryBtn-focus': variant === 'primary' && !isDisabled,
