@@ -5,7 +5,7 @@ import SlackIcon from "@/assets/slack.svg";
 import YoutubeIcon from "@/assets/youtube.svg";
 import OpenBookIcon from "@/assets/book-open.svg";
 import BookIcon from "@/assets/book.svg";
-import { CardProps } from "@/models/shared";
+import { CardProps, Option } from "@/models/shared";
 
 export interface FooterSection {
     id: number;
@@ -94,3 +94,29 @@ export const CARDS:CardProps[] = [
         link: '#',
     }
 ]
+
+export const FoundUsOptions:Option[] = [
+    {
+        name: 'Search engine',
+        value: 'searchEngine'
+    },
+    {
+        name: 'Recommended by friends or colleague',
+        value: 'recommended'
+    },
+    {
+        name: 'Social media',
+        value: 'socialMedia'
+    },
+    {
+        name: 'Blog or publication',
+        value: 'blog'
+    },
+    {
+        name: 'Others',
+        value: 'others'
+    },
+]
+
+export const urlStructure =
+  /(http(s)?:\/\/.)?(www\.)?[-a-zA-Z0-9@:%._+~#=]{2,256}\.[a-z]{2,6}\b([-a-zA-Z0-9@:%_+.~#?&//=]*)/g;

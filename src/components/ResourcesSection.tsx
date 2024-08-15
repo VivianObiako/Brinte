@@ -16,7 +16,7 @@ const ResourcesSection = () => {
                     {...CARDS[0]}
                     className='bg-purple-400 hover:bg-purple-500'
                 />
-                <div className='flex flex-col gap-4'>
+                <div className='flex flex-col gap-4 w-full items-center'>
                     <Card
                         {...CARDS[1]}
                         className='bg-orange-400 hover:bg-orange-500'

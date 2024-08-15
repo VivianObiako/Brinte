@@ -33,3 +33,27 @@ export interface SectionHeaderProps {
     description: string;
     className?: string;
 }
+export interface ContactFormProps {
+    closeForm: ()=> void;
+}
+
+export interface Option{
+    name: string;
+    value: string;
+}
+
+export interface CustomSelectProps extends React.InputHTMLAttributes<HTMLSelectElement> {
+    label: string;
+    error?: string;
+    options: Option[];
+}
+
+export interface CustomTextAreaProps extends React.InputHTMLAttributes<HTMLTextAreaElement> {
+    label: string;
+    error?: string;
+}
+
+export interface CustomTextInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+    label: string;
+    error?: string;
+}
