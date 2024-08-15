@@ -35,7 +35,7 @@ const MobileHeader = ({isScrolled}:HeaderProps) => {
                 </div>
             </div>
             <div
-                className={`transition-all duration-100 py-5 px-4 fixed w-full inset-0 top-[63px]
+                className={`transition-all duration-100 py-5 px-4 fixed w-full inset-0 top-[63px] z-50
                 ${!nav
                     ? "translate-x-[100%]"
                     : "lg:hidden border-t border-t-border-light bg-white min-h-screen -translate-x-0"}

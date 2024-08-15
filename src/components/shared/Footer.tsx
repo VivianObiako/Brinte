@@ -15,9 +15,9 @@ const Footer = () => {
                             <Image src={FooterLogo} alt="Brinte logo Icon" />
                         </div>
                         {FOOTER_SECTIONS && (
-                            <nav className='flex flex-col gap-8 md:flex-row flex-shrink-0'>
+                            <nav className='flex flex-row gap-4 md:gap-8 flex-shrink-0 justify-between md:justify-normal w-full md:w-fit '>
                                 {FOOTER_SECTIONS.map((section)=> (
-                                    <div key={section.id} className='w-[139px]'>
+                                    <div key={section.id} className='md:w-[139px]'>
                                         <h5 className='text-xs leading-[18px] text-text-subdued font-medium mb-6'>{section.name}</h5>
                                         <ul className='flex flex-col gap-6'>
                                             {section.links.map((link, index)=>(
