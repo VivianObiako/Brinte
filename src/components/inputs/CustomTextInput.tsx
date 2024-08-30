@@ -20,7 +20,7 @@ const CustomTextInput: React.FC<CustomTextInputProps> = ({
                 type={type}
                 name={name} 
                 id={name}
-                className={clsx("block rounded-[6px] px-[18px] pb-2.5 pt-5 w-full text-[13px] leading-[20px] placeholder:text-text-subdued text-text-primary bg-bg-invert dark:bg-gray-700 border border-transparent appearance-none focus:outline-none focus:ring-0 focus:border-primary-100 focus:shadow-active-input focus:bg-surface-bgInvert  peer disabled:!bg-surface-subdue disabled:placeholder:opacity-0", 
+                className={classNames("block rounded-[6px] px-[18px] pb-2.5 pt-5 w-full text-[13px] leading-[20px] placeholder:text-text-subdued text-text-primary bg-bg-invert dark:bg-gray-700 border border-transparent appearance-none focus:outline-none focus:ring-0 focus:border-primary-100 focus:shadow-active-input focus:bg-surface-bgInvert  peer disabled:!bg-surface-subdue disabled:placeholder:opacity-0", 
                     !value && "placeholder:opacity-0 focus:placeholder:opacity-100",
                     error && '!border-border-error !shadow-error bg-surface-bgInvert',
                     className

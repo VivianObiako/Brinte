@@ -9,7 +9,7 @@ import CustomLink from '../common/CustomLink';
 import CustomButton from '../common/CustomButton';
 import { APP_HEADER_NAV_ROUTES } from '@/utils/constants/routes';
 import MobileHeader from './MobileHeader';
-import clsx from 'clsx';
+import classNames from '@/utils/classNames';
 
 const Header = () => {
 
@@ -34,7 +34,7 @@ const Header = () => {
     
   return (
     <header className='w-full'>
-        <nav className={clsx(
+        <nav className={classNames(
             'hidden lg:flex border-b w-full bg-surface-bgInvert transition-all duration-300 ease',
             isScrolled ? 'border-b-border-light fixed top-0 left-0 z-50' : 'border-b-transparent'
             )}

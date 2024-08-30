@@ -20,7 +20,7 @@ const CustomTextArea: React.FC<CustomTextAreaProps> = ({
             <Textarea  
                 id={name}
                 name={name}
-                className={clsx("block rounded-[6px] p-3 w-full text-[13px] leading-[20px] h-[160px] placeholder:text-text-subdued hover:placeholder:text-text-secondary text-text-primary bg-bg-invert dark:bg-gray-700 border border-transparent appearance-none focus:outline-none focus:ring-0 focus:border-primary-100 focus:shadow-active-input focus:bg-surface-bgInvert  peer disabled:!bg-surface-subdue disabled:placeholder:opacity-0", 
+                className={classNames("block rounded-[6px] p-3 w-full text-[13px] leading-[20px] h-[160px] placeholder:text-text-subdued hover:placeholder:text-text-secondary text-text-primary bg-bg-invert dark:bg-gray-700 border border-transparent appearance-none focus:outline-none focus:ring-0 focus:border-primary-100 focus:shadow-active-input focus:bg-surface-bgInvert  peer disabled:!bg-surface-subdue disabled:placeholder:opacity-0", 
                     error && '!border-border-error !shadow-error bg-surface-bgInvert',
                 )} 
                 value={value}
