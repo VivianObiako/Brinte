@@ -14,16 +14,16 @@ const ResourcesSection = () => {
             <div className='flex flex-col md:flex-row gap-4 items-center'>
                 <Card
                     {...CARDS[0]}
-                    className='bg-purple-400 hover:bg-purple-500'
+                    className='bg-purple-400 hover:bg-purple-500 focus:bg-purple-500'
                 />
                 <div className='flex flex-col gap-4 w-full items-center'>
                     <Card
                         {...CARDS[1]}
-                        className='bg-orange-400 hover:bg-orange-500'
+                        className='bg-orange-400 hover:bg-orange-500 focus:bg-orange-500'
                     />
                     <Card
                         {...CARDS[2]}
-                        className='bg-surface-bgInvert hover:bg-tertiary-dim'
+                        className='bg-surface-bgInvert hover:bg-tertiary-dim focus:bg-tertiary-dim'
                     />
                 </div>
             </div>

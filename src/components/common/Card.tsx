@@ -6,7 +6,7 @@ import ExternalIcon from "@/assets/arrow-up-right.svg"
 const Card = ({icon, title, link, guideText, className, type}:CardProps) => {
   return (
     <a href={link} className={classNames(
-            "w-full max-w-[317px] flex justify-between flex-col p-6 rounded-3xl shadow-card", 
+            "w-full max-w-[317px] flex justify-between flex-col p-6 rounded-3xl shadow-card outline-none", 
             className,
             type === 'small' ? "h-[178px]": "",
             type === 'big' ? "h-[372px]": "",
