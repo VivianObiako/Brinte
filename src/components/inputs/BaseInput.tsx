@@ -2,9 +2,9 @@ import React, { useState } from 'react';
 import classNames from '@/utils/classNames';
 
 export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement> {
-  label: string;
-  error?: string;
-  handleClick?: () => void;
+    label: string;
+    error?: string;
+    handleClick?: () => void;
 }
 
 const BaseInput: React.FC<BaseInputProps> = ({
@@ -19,7 +19,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
     handleClick,
     children,
     ...props
-  }) => {
+}) => {
     const [isFocused, setIsFocused] = useState(false);
 
     const labelClasses = classNames(
@@ -32,35 +32,35 @@ const BaseInput: React.FC<BaseInputProps> = ({
         !value && 'text-text-subdued group-focus:text-text-secondary',
         !value && (isFocused ? 'opacity-100 -translate-y-[.8rem]' : 'opacity-0 -translate-y-[.8rem] scale-75 translate-y-[10px] z-[-1]'),
     );
-  
+
     return (
-      <div className="relative w-full group">
-        {React.Children.map(children, child =>
-          React.cloneElement(child as React.ReactElement, {
-            onFocus: () => {
-                setIsFocused(true);
-                if (handleClick) {
-                    handleClick();
-                }
-            },
-            onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
-                setIsFocused(false);
-                if (props.onBlur) {
-                  props.onBlur(e);
-                }
-              },
-          })
-        )}
-        {props.type !== 'textarea' && <label htmlFor={name} className={labelClasses}>
-          {label}
-        </label>}
-        {error && (
-          <p id={`${name}_error_help`} className="mt-2 text-xs text-text-error">
-            <span className="text-xs leading-[18px]">{error}</span>
-          </p>
-        )}
-      </div>
+        <div className="relative w-full group">
+            {React.Children.map(children, child =>
+                React.cloneElement(child as React.ReactElement, {
+                    onFocus: () => {
+                        setIsFocused(true);
+                        if (handleClick) {
+                            handleClick();
+                        }
+                    },
+                    onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+                        setIsFocused(false);
+                        if (props.onBlur) {
+                        props.onBlur(e);
+                        }
+                    },
+                })
+            )}
+            {props.type !== 'textarea' && <label htmlFor={name} className={labelClasses}>
+                {label}
+            </label>}
+            {error && (
+                <p id={`${name}_error_help`} className="mt-2 text-xs text-text-error">
+                    <span className="text-xs leading-[18px]">{error}</span>
+                </p>
+            )}
+        </div>
     );
-  };
+};
 
 export default BaseInput;

@@ -3,9 +3,9 @@ import BaseInput, { BaseInputProps } from './BaseInput';
 import classNames from '@/utils/classNames';
 
 interface TextareaInputProps extends Omit<BaseInputProps, 'value' | 'onChange'> {
-  value: string;
-  onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
-  rows?: number;
+    value: string;
+    onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+    rows?: number;
 }
 
 const TextareaInput: React.FC<TextareaInputProps> = ({ ...props }) => (
