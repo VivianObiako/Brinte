@@ -1,12 +1,12 @@
 import { CardProps } from '@/models/shared';
-import clsx from 'clsx';
+import classNames from '@/utils/classNames';
 import Image from 'next/image';
 import ExternalIcon from "@/assets/arrow-up-right.svg"
 
 const Card = ({icon, title, link, guideText, className, type}:CardProps) => {
   return (
-    <div className={clsx(
-            "w-full max-w-[317px] flex justify-between flex-col p-6 rounded-3xl shadow-card", 
+    <a href={link} className={classNames(
+            "w-full max-w-[317px] flex justify-between flex-col p-6 rounded-3xl shadow-card outline-none", 
             className,
             type === 'small' ? "h-[178px]": "",
             type === 'big' ? "h-[372px]": "",
@@ -26,7 +26,7 @@ const Card = ({icon, title, link, guideText, className, type}:CardProps) => {
         <div>
             <p className='font-medium text-2xl leading-[32px]'>{title}</p>
         </div>
-    </div>
+    </a>
   )
 }
 

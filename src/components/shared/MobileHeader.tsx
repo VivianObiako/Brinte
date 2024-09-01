@@ -10,7 +10,7 @@ import CustomLink from '../common/CustomLink';
 import CustomButton from '../common/CustomButton';
 import hamburger from "@/assets/hamburger.svg";
 import { HeaderProps } from '@/models/shared';
-import clsx from 'clsx';
+import classNames from '@/utils/classNames';
 
 
 const MobileHeader = ({isScrolled}:HeaderProps) => {
@@ -19,7 +19,7 @@ const MobileHeader = ({isScrolled}:HeaderProps) => {
   return (
     <nav className='lg:hidden'>
         <ul>
-            <div className={clsx(
+            <div className={classNames(
                 'transition-all duration-150 border-b w-full flex justify-between items-center h-[64px] px-4 bg-surface-bgInvert',
                 isScrolled || nav ? "fixed border-b-border-light top-0 left-0 z-50 ease-in-out" : "border-transparent"
             )}
