@@ -4,6 +4,7 @@ import classNames from '@/utils/classNames';
 export interface BaseInputProps extends React.InputHTMLAttributes<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement> {
   label: string;
   error?: string;
+  handleClick?: () => void;
 }
 
 const BaseInput: React.FC<BaseInputProps> = ({
@@ -15,6 +16,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
     error,
     name,
     className,
+    handleClick,
     children,
     ...props
   }) => {
@@ -28,18 +30,30 @@ const BaseInput: React.FC<BaseInputProps> = ({
         'rtl:peer-focus:translate-x-1/2 rtl:peer-focus:left-auto',
         disabled && "hover:text-text-subdued",
         !value && 'text-text-subdued group-focus:text-text-secondary',
-        props.type === 'select' && !value && (isFocused ? 'opacity-100 -translate-y-[.8rem]' : 'opacity-0 -translate-y-[.8rem] scale-75 translate-y-[10px] z-[-1]'),
+        !value && (isFocused ? 'opacity-100 -translate-y-[.8rem]' : 'opacity-0 -translate-y-[.8rem] scale-75 translate-y-[10px] z-[-1]'),
     );
+
+    const handleBaseInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
+        if (handleClick) handleClick();
+        e.preventDefault();
+      }
   
     return (
-      <div className="relative w-full group">
+      <div className="relative w-full group " 
+      onClick={handleBaseInputClick}
+      >
         {React.Children.map(children, child =>
           React.cloneElement(child as React.ReactElement, {
             onFocus: () => setIsFocused(true),
-            onBlur: () => setIsFocused(false),
+            onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+                setIsFocused(false);
+                if (props.onBlur) {
+                  props.onBlur(e);
+                }
+              },
           })
         )}
-        {props.type !== 'textarea' && <label htmlFor={name} className={labelClasses}>
+        {props.type !== 'textarea' && <label htmlFor={name} className={labelClasses} onClick={() => console.log('label clicked')}>
           {label}
         </label>}
         {error && (
