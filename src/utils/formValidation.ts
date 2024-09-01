@@ -9,7 +9,6 @@ const isValidUrl = (url: string): boolean =>
   /^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/i.test(url);
 
 export const validateContactForm = (values: ContactFormType): ValidationErrors => {
-  console.log('validateContactForm called with:', values);
   const errors: ValidationErrors = {};
 
   Object.entries(contactFormFields).forEach(([key, field]) => {

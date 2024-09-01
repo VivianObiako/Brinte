@@ -21,7 +21,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeForm }) => {
         initialValues,
         validate: validateContactForm,
         onSubmit: (values) => {
-            console.log(values);
+            console.log(values, 'contact form');
             closeForm();
         },
     });
