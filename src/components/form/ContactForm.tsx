@@ -10,6 +10,7 @@ import CustomSelect from '../inputs/CustomSelect';
 import CustomTextArea from '../inputs/CustomTextArea';
 import { validateContactForm } from '@/utils/formValidation';
 
+
 const ContactForm: React.FC<ContactFormProps> = ({ closeForm }) => {
     const initialValues = Object.keys(contactFormFields).reduce((acc, key) => {
         acc[key as keyof ContactFormType] = '';
@@ -30,19 +31,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ closeForm }) => {
         const commonProps = {
             label: field.label,
             name: field.name,
+            type: field.type,
             value: formik.values[fieldName],
             onChange: formik.handleChange,
             onBlur: formik.handleBlur,
             error: formik.touched[fieldName] ? formik.errors[fieldName] : undefined,
-            placeholder: `Enter your ${field.label.toLowerCase()}`,
+            placeholder: `${field.label.toLowerCase()}`,
             required: true,
         };
 
         switch (field.type) {
             case 'select':
-                return <CustomSelect {...commonProps} options={field.options?.map(option => ({ name: option.label, value: option.value })) || []} />;
+                return <CustomSelect {...commonProps} options={field.options?.map(option => ({ label: option.label, value: option.value })) || []} type='select' />;
             case 'textarea':
-                return <CustomTextArea {...commonProps} />;
+                return <CustomTextArea {...commonProps} type='textarea' />;
             default:
                 return <CustomTextInput {...commonProps} type={field.type} />;
         }
