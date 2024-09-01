@@ -20,7 +20,7 @@ const CustomTextInput: React.FC<TextInputProps> = ({ type = 'text', className, e
           "border border-transparent appearance-none focus:outline-none focus:ring-0",
           "focus:border-primary-100 focus:shadow-active-input focus:bg-surface-bgInvert",
           "peer disabled:!bg-surface-subdue disabled:placeholder:opacity-0",
-          !props.value && "placeholder:opacity-0 focus:placeholder:opacity-100",
+          !props.value && "placeholder:opacity-100 focus:placeholder:opacity-100",
           error && '!border-border-error !shadow-error bg-surface-bgInvert',
           className
         )}

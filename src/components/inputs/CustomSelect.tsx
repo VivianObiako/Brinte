@@ -35,17 +35,27 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
   };
 
   const handleBlur = (event: React.FocusEvent) => {
-    // Close the listbox after a short delay to allow for selecting an option
-    setTimeout(() => {
+    // Use requestAnimationFrame to check after the focus has moved
+    requestAnimationFrame(() => {
       if (!customSelectRef.current?.contains(document.activeElement)) {
         setIsOpen(false);
         if (onBlur) {
-          onBlur(event as React.FocusEvent<HTMLSelectElement>);
+          // Create a synthetic event if the original event's target is not the select element
+          const syntheticEvent = event.target === selectRef.current
+            ? event
+            : {
+                target: selectRef.current,
+                type: 'blur',
+                preventDefault: () => {},
+                stopPropagation: () => {}
+              } as React.FocusEvent<HTMLSelectElement>;
+          
+          onBlur(syntheticEvent as React.FocusEvent<HTMLSelectElement>);
         }
       }
-    }, 0);
+    });
   };
-
+  
   const handleSelect = (option: SelectOption) => {
     if (selectRef.current) {
       selectRef.current.value = option.value;
@@ -57,6 +67,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     switch (event.key) {
+        case ' ':
+        case 'Enter':
+            if (!isOpen) {
+                event.preventDefault();
+                setIsOpen(true);
+            }
+        break;
       case 'ArrowDown':
       case 'ArrowUp':
         event.preventDefault();
@@ -93,31 +110,52 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       setFocusedIndex(-1);
     }
   }, [isOpen]);
+  const handleBaseInputClick = () => {
+    if (!isOpen && !props.disabled) {
+        setIsOpen(true);
+        customSelectRef.current?.focus();
+    }
+};
 
-    useEffect(() => {
-        const handleClickOutside = (event: MouseEvent) => {
-            if (customSelectRef.current && !customSelectRef.current.contains(event.target as Node)) {
-                setIsOpen(false);
-                if (onBlur) {
-                onBlur({ target: { name, value } } as React.FocusEvent<HTMLSelectElement>);
-                }
-            }
-        };
-
-        if (isOpen) {
-            document.addEventListener('mousedown', handleClickOutside);
-            return () => document.removeEventListener('mousedown', handleClickOutside);
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (customSelectRef.current && !customSelectRef.current.contains(event.target as Node)) {
+        setIsOpen(false);
+        if (onBlur) {
+          const syntheticEvent = {
+            target: { name, value },
+            type: 'blur',
+            preventDefault: () => {},
+            stopPropagation: () => {}
+          } as React.FocusEvent<HTMLSelectElement>;
+          onBlur(syntheticEvent);
         }
-    }, [isOpen, onBlur, name, value]);
+      }
+    };
+  
+    if (isOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+      return () => document.removeEventListener('mousedown', handleClickOutside);
+    }
+  }, [isOpen, onBlur, name, value]);
 
   return (
-    <BaseInput {...props} label={label} error={error} value={selectedOption?.value}>
+    <BaseInput 
+        {...props} 
+        label={label} 
+        error={error} 
+        value={selectedOption?.value}
+        handleClick={handleBaseInputClick} 
+    >
       <div
-        className="relative"
+        className="relative group focus:outline-none"
         ref={customSelectRef}
         aria-invalid={!!error}
         onBlur={handleBlur}
-      >
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+
+    >
         <select
           ref={selectRef}
           name={name}
@@ -142,10 +180,11 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
             "bg-bg-invert text-text-primary text-left text-[13px] leading-[20px]",
             "border border-transparent rounded-md appearance-none focus:outline-none focus:ring-0",
             "focus:border-primary-100 focus:shadow-active-input focus:bg-surface-bgInvert",
+            "group-focus-within:border-primary-100 group-focus-within:shadow-active-input group-focus-within:bg-surface-bgInvert",
             "peer disabled:!bg-surface-subdue disabled:placeholder:opacity-0 disabled:cursor-not-allowed",
             error && '!border-border-error !shadow-error bg-surface-bgInvert',
           )}
-          onClick={() => setIsOpen(!isOpen)}
+          onClick={() => setIsOpen(true)}
           onKeyDown={handleButtonKeyDown}
           aria-haspopup="listbox"
           aria-expanded={isOpen}
@@ -161,7 +200,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
             !selectedOption && isOpen && 'text-text-subdued group-focus:opacity-100',
             !selectedOption && !isOpen && 'group-focus:opacity-0',
           )}>
-            {selectedOption ? selectedOption.label : isOpen ? options[0].label : props.placeholder}
+            {selectedOption ? selectedOption.label : isOpen ? '' : props.placeholder}
           </span>
           <svg className="h-5 w-5 text-text-secondary" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
             <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
@@ -182,7 +221,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                 ref={(el: HTMLLIElement | null) => { optionsRef.current[index] = el; }}
                 className={`cursor-pointer rounded-md text-[14px] leading-[22px] select-none relative py-[5px] px-2 font-medium
                   ${option.value === value ? 'bg-surface-active' : ''}
-                  hover:bg-surface-active`}
+                  hover:bg-surface-active focus:bg-surface-active focus:outline-none`}
                 onClick={() => handleSelect(option)}
                 onKeyDown={(event) => handleOptionKeyDown(event, option)}
                 role="option"
