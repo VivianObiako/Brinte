@@ -32,19 +32,17 @@ const BaseInput: React.FC<BaseInputProps> = ({
         !value && 'text-text-subdued group-focus:text-text-secondary',
         !value && (isFocused ? 'opacity-100 -translate-y-[.8rem]' : 'opacity-0 -translate-y-[.8rem] scale-75 translate-y-[10px] z-[-1]'),
     );
-
-    const handleBaseInputClick = (e: React.MouseEvent<HTMLDivElement>) => {
-        if (handleClick) handleClick();
-        e.preventDefault();
-      }
   
     return (
-      <div className="relative w-full group " 
-      onClick={handleBaseInputClick}
-      >
+      <div className="relative w-full group">
         {React.Children.map(children, child =>
           React.cloneElement(child as React.ReactElement, {
-            onFocus: () => setIsFocused(true),
+            onFocus: () => {
+                setIsFocused(true);
+                if (handleClick) {
+                    handleClick();
+                }
+            },
             onBlur: (e: React.FocusEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
                 setIsFocused(false);
                 if (props.onBlur) {
@@ -53,7 +51,7 @@ const BaseInput: React.FC<BaseInputProps> = ({
               },
           })
         )}
-        {props.type !== 'textarea' && <label htmlFor={name} className={labelClasses} onClick={() => console.log('label clicked')}>
+        {props.type !== 'textarea' && <label htmlFor={name} className={labelClasses}>
           {label}
         </label>}
         {error && (

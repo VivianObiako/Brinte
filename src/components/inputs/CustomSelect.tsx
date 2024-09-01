@@ -67,6 +67,13 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
 
   const handleKeyDown = (event: React.KeyboardEvent) => {
     switch (event.key) {
+        case ' ':
+        case 'Enter':
+            if (!isOpen) {
+                event.preventDefault();
+                setIsOpen(true);
+            }
+        break;
       case 'ArrowDown':
       case 'ArrowUp':
         event.preventDefault();
@@ -103,12 +110,12 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
       setFocusedIndex(-1);
     }
   }, [isOpen]);
-
   const handleBaseInputClick = () => {
     if (!isOpen && !props.disabled) {
-      setIsOpen(true);
+        setIsOpen(true);
+        customSelectRef.current?.focus();
     }
-  };
+};
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
@@ -141,11 +148,14 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
         handleClick={handleBaseInputClick} 
     >
       <div
-        className="relative group"
+        className="relative group focus:outline-none"
         ref={customSelectRef}
         aria-invalid={!!error}
         onBlur={handleBlur}
-      >
+        tabIndex={0}
+        onKeyDown={handleKeyDown}
+
+    >
         <select
           ref={selectRef}
           name={name}
@@ -211,7 +221,7 @@ const CustomSelect: React.FC<CustomSelectProps> = ({
                 ref={(el: HTMLLIElement | null) => { optionsRef.current[index] = el; }}
                 className={`cursor-pointer rounded-md text-[14px] leading-[22px] select-none relative py-[5px] px-2 font-medium
                   ${option.value === value ? 'bg-surface-active' : ''}
-                  hover:bg-surface-active`}
+                  hover:bg-surface-active focus:bg-surface-active focus:outline-none`}
                 onClick={() => handleSelect(option)}
                 onKeyDown={(event) => handleOptionKeyDown(event, option)}
                 role="option"
