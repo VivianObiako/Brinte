@@ -33,7 +33,7 @@ const Header = () => {
 
     
   return (
-    <header className='w-full'>
+    <header className='w-full h-[64px]'>
         <nav className={classNames(
             'hidden lg:flex border-b w-full bg-surface-bgInvert transition-all duration-300 ease',
             isScrolled ? 'border-b-border-light fixed top-0 left-0 z-50' : 'border-b-transparent'
